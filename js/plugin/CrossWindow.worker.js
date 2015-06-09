@@ -42,7 +42,7 @@ function onConnect( event){
 
 
     oPortCurrent.start();
-};
+}
 
 /**
  * [sendMessage description]
