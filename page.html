@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Page</title>
+<style>
+        *, body, html{
+            box-sizing:border-box;
+            margin:0;
+            padding:0;
+        }
+        .box{
+            float:left;
+            border:none;
+            width:33%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <input type="text" onChange="send(value);"></input>
+    <div id="result"></div>
+
+<script type="text/javascript" src="js/plugin/CrossWindow.class.js"></script>
+
+<script type="text/javascript">
+
+    /**
+     * [send envoie message lorsque l'input change]
+     */
+    function send( sValue){
+       CrossWindow.send( '*',{ value: 'page : '+sValue});
+    }
+
+    /**
+     * [definir nom de la page courrante et action lors de reception de message]
+     * @param  {[object]} e [variable envoyé]
+     */
+    CrossWindow.setName('page').setOnMessage( function( e){
+        sData = "<p>"+e.data.value+"</p>";
+        document.getElementById('result').innerHTML += sData;
+
+    });
+
+</script>
+
+</body>
+</html>
